@@ -1,0 +1,323 @@
+@use 'colors' as *;
+@use 'mixins' as *;
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+ul {
+	list-style-type: none;
+}
+a {
+	text-decoration: none;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1300px;
+}
+
+.nav {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 1000;
+	&-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 4em 1.5em;
+		&__list {
+			display: flex;
+		}
+		&__item {
+			margin-left: 1em;
+			&-link {
+				position: relative;
+				font-size: 1.5rem;
+				font-weight: 500;
+				color: $main;
+				&::after {
+					position: absolute;
+					left: 0;
+					bottom: -0.1em;
+					background-color: $main;
+					width: 100%;
+					height: 0.1em;
+					transform: scale(0);
+					transform-origin: right;
+					transition: transform 0.2s;
+					content: '';
+				}
+				&:hover::after {
+					transform: scale(1);
+					transform-origin: left;
+				}
+			}
+		}
+	}
+}
+
+.header {
+	background-color: $grey;
+	&-container {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+	}
+	&-box {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0 3em;
+		width: 100%;
+		&__btns {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			&--item {
+				@include button;
+				font-size: 1.2rem;
+				&:nth-child(2) {
+					background-color: $main;
+					color: $grey;
+					&::after {
+						background-color: $grey;
+					}
+					&:hover {
+						color: $main;
+					}
+				}
+			}
+		}
+	}
+	&-title {
+		font-size: 5rem;
+		color: $main;
+	}
+	&-text {
+		font-size: 1.5rem;
+		font-weight: 500;
+		letter-spacing: 0.05em;
+		margin: 1.2em 0 0.7em;
+		color: $third;
+	}
+	&-arrow {
+		position: absolute;
+		bottom: 5em;
+		left: 50%;
+		transform: translate(-50%);
+		cursor: pointer;
+	}
+}
+
+.shop {
+	background-color: $grey;
+	padding-bottom: 10em;
+	&-box {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 18em 1.5em 12em;
+	}
+	&-title {
+		font-size: 1.8rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: $main;
+	}
+	&-button {
+		@include button;
+		font-size: 1.2rem;
+		margin: 0;
+		background-color: $main;
+		color: $grey;
+		&::after {
+			background-color: $grey;
+		}
+		&:hover {
+			color: $main;
+		}
+	}
+	&-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+		&__item {
+			margin: 0 1em 2em;
+			padding: 5em;
+			width: 41em;
+			height: 23em;
+			background-color: #ffffff0c;
+			border: 0.1em solid $second;
+			border-radius: 1.5em;
+			transition: transform 0.3s;
+			&:hover {
+				transform: scale(1.02);
+			}
+			&-second {
+				padding: 3em;
+			}
+			&--title {
+				margin-bottom: 0.35em;
+				font-size: 4rem;
+				color: $main;
+			}
+			&--text {
+				font-size: 1.3rem;
+				color: $third;
+				font-weight: 500;
+			}
+			&--price {
+				margin-top: .5em;
+				font-size: 2rem;
+				font-weight: bold;
+				text-transform: uppercase;
+				color: $main;
+			}
+			&--button {
+				@include button;
+				font-size: 1.5rem;
+				letter-spacing: 0.1em;
+			}
+		}
+	}
+}
+
+.footer {
+	background-color: $black;
+	padding: 10em 3em;
+	&-top {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		&__box {
+			display: flex;
+			&-item {
+				margin: 0 1em;
+			}
+		}
+		&__logo {
+			margin-bottom: 1em;
+			color: $main;
+			font-size: 3rem;
+			font-weight: bold;
+		}
+	}
+	&-middle {
+		margin: 5em 0;
+		&__text {
+			text-align: center;
+			color: $second;
+			font-size: 1.5rem;
+		}
+	}
+	&-bottom {
+		text-align: center;
+		color: $main;
+		font-size: 1.5rem;
+		font-weight: 500;
+	}
+}
+
+@media (min-width: 380px) {
+	.header {
+		&-box__btns--item {
+			font-size: 1.4rem;
+		}
+	}
+	.shop-button {
+		font-size: 1.4rem;
+	}
+}
+@media (min-width: 400px) {
+	.nav-box {
+		padding: 4em 3em;
+		&__item {
+			margin-left: 2em;
+		}
+	}
+	.shop-box {
+		padding: 18em 3em 12em;
+	}
+}
+@media (min-width: 576px) {
+	.nav-box__item {
+		margin-left: 5em;
+		&-link {
+			font-size: 1.8rem;
+		}
+	}
+	.header {
+		&-title {
+			font-size: 7rem;
+		}
+		&-text {
+			font-size: 2rem;
+		}
+		&-box__btns--item {
+			font-size: 2rem;
+		}
+	}
+	.shop {
+		&-title {
+			font-size: 3rem;
+		}
+		&-button {
+			font-size: 2rem;
+		}
+	}
+	.footer-top {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		&__logo {
+			margin: 0;
+		}
+		&__box-item {
+			margin-left: 2em;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.nav-box__item-link {
+		font-size: 2.5rem;
+	}
+	.header-box {
+		display: block;
+		width: auto;
+	}
+	.footer-top {
+		&__box-item {
+			margin-left: 5em;
+		}
+		&__logo {
+			font-size: 4rem;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.footer {
+		&-middle {
+			margin: 5em 20em;
+		}
+		&-bottom {
+			font-size: 2rem;
+		}
+	}
+}

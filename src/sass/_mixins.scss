@@ -1,0 +1,38 @@
+@use 'colors' as *;
+
+@mixin button {
+	position: relative;
+	padding: 0.8em 2.3em;
+	margin: 1em 1.5em 0 0;
+	font-size: 2rem;
+	letter-spacing: 0.05em;
+	font-weight: 600;
+	color: $main;
+	text-transform: uppercase;
+	background-color: transparent;
+	border: 0.2em solid $main;
+	border-radius: 2em;
+	overflow: hidden;
+	transition: color 0.2s;
+	z-index: 1;
+	cursor: pointer;
+    &::after {
+        position: absolute;
+        top: -0.75em;
+        left: -110%;
+        width: 100%;
+        height: 4.5em;
+        transform: rotate(-10deg);
+        background-color: $main;
+        transition: left 0.2s;
+        z-index: -2;
+        content: '';
+    }
+    &:hover {
+        color: $grey;
+        &::after {
+            left: 0;
+            z-index: -1;
+        }
+    }
+}
